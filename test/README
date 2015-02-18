@@ -1,0 +1,56 @@
+1. To test, copy this configuration file into /etc folder OR run rbs_script.sh with root permission. Make sure that Configuration file has been created in /etc folder
+2. Considering this default configuration file provided here, there are total five users who have user id greater than 1000. We have taken only user having ids greater than 1000 beacuse below that all the users are actually start-up/login processes which should definitely be allowed access to all the functionaliy otherwise system may halt in an inconsistent state.
+3. Now, on my ubuntu system I tested with two users - udit and syssec_udit. Make sure that both users have already been added in the system. [Check /etc/passwd].
+4. udit user has the admin role while syssec_udit user has the non-admin role in the provided file.
+
+Below are the results of five inode operations(create file, remove file, create dir, remove dir and rename file) supported in this version of kernel for both the users -
+
+For user udit: 
+
+udit@mylaptop:~/CSE509/test$ touch file
+udit@mylaptop:~/CSE509/test$ ls
+file  rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$ rm file
+udit@mylaptop:~/CSE509/test$ ls
+rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$ mkdir dir
+udit@mylaptop:~/CSE509/test$ ls
+dir  rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$ rmdir dir
+udit@mylaptop:~/CSE509/test$ ls
+rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$ touch file
+udit@mylaptop:~/CSE509/test$ ls
+file  rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$ mv file file1
+udit@mylaptop:~/CSE509/test$ ls
+file1  rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$ rm file1
+udit@mylaptop:~/CSE509/test$ ls
+rbslinux.conf  README
+udit@mylaptop:~/CSE509/test$
+
+
+
+
+For user syssec_udit:
+
+syssec_udit@mylaptop:~/CSE509/test$ ls
+dirs  rbslinux.conf  README
+syssec_udit@mylaptop:~/CSE509/test$ touch file
+touch: setting times of ‘file’: No such file or directory
+syssec_udit@mylaptop:~/CSE509/test$ rm rbslinux.conf
+rm: cannot remove ‘rbslinux.conf’: Operation not permitted
+syssec_udit@mylaptop:~/CSE509/test$ mv rbslinux.conf somethingn-else
+mv: cannot move ‘rbslinux.conf’ to ‘somethingn-else’: Operation not permitted
+syssec_udit@mylaptop:~/CSE509/test$ mkdir dir
+mkdir: cannot create directory ‘dir’: Operation not permitted
+syssec_udit@mylaptop:~/CSE509/test$ rmdir dirs
+rmdir: failed to remove ‘dirs’: Operation not permitted
+
+
+
+
+
+
+
