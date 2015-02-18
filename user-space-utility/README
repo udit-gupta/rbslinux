@@ -1,0 +1,32 @@
+
+
+                                                            INTRODUCTION
+
+This is a User-Space Utility to add and delete roles for role based file system access control.
+1. Two roles are present in current verison: Admin(0) and Non-admin(1).
+2. Both Roles have some implicit inode permissions.
+      A) Admin can create files and directories, remove them and rename them.
+      B) Non-Admin can neither create files/directories nor they can remove/rename them. 
+
+
+                                                            USAGE & DESCRIPTION
+Usage: ./rbs_script.sh [-p] [-i <admin uid>] [-a <non-admin uid>] [-u <admin username>] [-v <non-admin username>]
+Upadte Role based Security Databse (RBAC Policy Configuration) by adding and deleting roles for the specified users/uids (Default role is admin for all users).
+                                                            
+  -p                            Repopulate the whole RBS database with default values.
+  -i <admin uid>                Add a new role Admin for the user with specified uid.
+  -a <non-admin uid>            Add a new role Non-Admin for the user with specified uid.
+  -u <admin username>           Add a new role Admin for the specified user.
+  -v <non-admin username>       Add a new role Non-Admin for tthe specified user.
+  
+
+                                                            INSTALLATION STEPS
+1. Run the script ./rbs_script.sh -p to create and populate the RBAC policy database with default initial configuration in the /etc/rbslinux.conf.
+2. The script should be run with root permission. Only authenticated administrators should be allowed to add and create roles in the system.
+
+
+
+
+
+
+
