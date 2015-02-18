@@ -1,0 +1,7 @@
+
+config SECURITY_RBSLINUX
+    bool "Role Based Security Support"
+    default n
+    help    
+      This module does nothing in a positive kind of way.
+      If you are unsure how to answer this question, answer N.
